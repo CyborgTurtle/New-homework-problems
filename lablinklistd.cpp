@@ -25,30 +25,30 @@ int main() {
 	cout << list1 << endl;
 	cout >> list1 << endl;
 
-	////Test of deleting entire list
-	//list1.deleteList();
-	//cout << list1 << endl;
+	//Test of deleting entire list
+	list1.deleteList();
+	cout << list1 << endl;
 
-	////Add items again using insertAt and appendAt
-	//list1.insertAt(5);
-	//tn1 = list1.appendAt(10, list1.getHead());
-	//tn2 = list1.appendAt(7, list1.getTail());
-	//list1.appendAt(20, tn1);
-	//list1.insertAt(30, list1.getHead());
-	//list1.appendAt(2, tn2);
-	////Output forwards
-	//cout << list1 << endl;
-	////Output reverse
-	//cout >> list1 << endl;
+	//Add items again using insertAt and appendAt
+	list1.insertAt(5);
+	tn1 = list1.appendAt(10, list1.getHead());
+	tn2 = list1.appendAt(7, list1.getTail());
+	list1.appendAt(20, tn1);
+	list1.insertAt(30, list1.getHead());
+	list1.appendAt(2, tn2);
+	//Output forwards
+	cout << list1 << endl;
+	//Output reverse
+	cout >> list1 << endl;
 
-	////Now replace list with a new one in a specific order
-	//int pow2[] = { 1,2,4,8,16,32,16,8,4,2,1 };
-	//list1.makeList(pow2, sizeof(pow2) / sizeof(int));
-	//cout << list1 << endl;
-	//cout >> list1 << endl;
+	//Now replace list with a new one in a specific order
+	int pow2[] = { 1,2,4,8,16,32,16,8,4,2,1 };
+	list1.makeList(pow2, sizeof(pow2) / sizeof(int));
+	cout << list1 << endl;
+	cout >> list1 << endl;
 
-	////Returning a non-zero number, if not 3, then we know it seg-faulted
-	//return 3;
+	//Returning a non-zero number, if not 3, then we know it seg-faulted
+	return 3;
 }
 
 namespace LLLAB {

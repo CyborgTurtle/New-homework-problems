@@ -76,32 +76,32 @@ namespace LLLAB {
 
 
 	 //		The new node next points to cursor->next
-		ListNode* newnode = new ListNode(newdataum);
+		ListNode* newnode = new ListNode(newdataum,cursor->getNext(), cursor);
 		if (cursor->getNext() != NULL) {
-			newnode->setNext(cursor->getNext());
+			
 				
 
 			
-
+			cursor->setNext(newnode);
 
 			//		The new node prev points to cursor
-			newnode->setPrev(cursor);
-
-			//		The cursor->next prev points to the new node
 			cursor->getNext()->setPrev(newnode);
 
 			
 
+			
+
 		}
-		//		The cursor next points to the new node
-		cursor->setNext(newnode);
-
-
-		//		Tail is updated when a node is added to the end
-		if (cursor->getNext() == NULL) {
+		else {
 			tail = newnode;
 
 		}
+	
+//		The cursor next points to the new node
+		
+
+		//		Tail is updated when a node is added to the end
+		
 
 
 		//		Returns a pointer to the new node
@@ -126,14 +126,16 @@ namespace LLLAB {
 			cursor->setPrev(newnode);
 		}
 		//		Head is updated when a node is added to the front
-		if (head == cursor) {
+		 if (head == cursor) {
 			head = newnode;
+
 
 
 		}
 		//		Tail is updated when a node is added to an empty list
 		if (head == NULL && tail == NULL) {
-			head = tail = newnode;
+			head = newnode;
+			tail = newnode;
 
 
 
