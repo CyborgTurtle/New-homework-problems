@@ -71,31 +71,46 @@ namespace LLLAB {
 	ListNode* LinkedList::appendAt(const ListNode::value_type& newdataum, ListNode* cursor)
 	{//     Precondition: cursor is not NULL
 	 //     Postcondition: A new node is created with the datum of newdatum.
-
-
+		
+		ListNode* newnode = new ListNode(newdataum);
 
 
 	 //		The new node next points to cursor->next
-		ListNode* newnode = new ListNode(newdataum,cursor->getNext(), cursor);
-		if (cursor->getNext() != NULL) {
-			
-				
-
-			
-			cursor->setNext(newnode);
-
-			//		The new node prev points to cursor
-			cursor->getNext()->setPrev(newnode);
-
-			
-
+		if (head == NULL) {
+			head = tail = newnode;
 			
 
 		}
-		else {
+		else if (cursor == tail) {
+		
+			cursor->setNext(newnode);
+			newnode->setPrev(cursor);
 			tail = newnode;
 
+			
+
+			
+			//cursor->setNext(newnode);
+
+			////		The new node prev points to cursor
+			//cursor->getNext()->setPrev(newnode);
+
+			
+			
+			
+
 		}
+		else   {
+			
+			newnode->setNext(cursor->getNext());
+			newnode->setPrev(cursor);
+			cursor->getNext()->setPrev(newnode);
+			cursor->setNext(newnode);
+			
+			
+			
+		}
+		return newnode;
 	
 //		The cursor next points to the new node
 		
@@ -105,7 +120,7 @@ namespace LLLAB {
 
 
 		//		Returns a pointer to the new node
-		return newnode;
+		
 
 	}
 
@@ -114,35 +129,45 @@ namespace LLLAB {
 	//     Postcondition: A new node is created with the datum of newdatum.
 	ListNode* LinkedList::insertAt(const ListNode::value_type& newdataum, ListNode* cursor)
 	{//		The new node next points to cursor
-		ListNode* newnode = new ListNode(newdataum);
+		
 		//		The new node prev points to cursor->prev
 		if (cursor != head) {
-			newnode->setPrev(cursor->getPrev());
+			ListNode* newnode = new ListNode(newdataum,cursor,cursor->getPrev());
+			
 
 
 			//		The cursor->prev next points to the new node
 			cursor->getPrev()->setNext(newnode);
 			//		The cursor prev points to the new node
 			cursor->setPrev(newnode);
+			
+			
+
+
+		
+		
 		}
 		//		Head is updated when a node is added to the front
-		 if (head == cursor) {
+		else if (cursor == head && cursor!= NULL) {
+			ListNode* newnode = new ListNode(newdataum);
+			cursor->setPrev(newnode);
+			newnode->setNext(cursor);
 			head = newnode;
-
-
 
 		}
+			
 		//		Tail is updated when a node is added to an empty list
-		if (head == NULL && tail == NULL) {
-			head = newnode;
+		 else {
+			 ListNode* newnode = new ListNode(newdataum);
+			 head = newnode;
 			tail = newnode;
 
-
+			return newnode;
 
 
 		}
 		//		Returns a pointer to the new node
-		return newnode;
+	
 
 
 	}
